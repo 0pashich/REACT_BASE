@@ -1,6 +1,10 @@
 import logo from './logo.svg';
 import './App.css';
 
+function Message(props) {
+  return <h1 className="message">Hello, {props.name}</h1>;
+}
+
 function App() {
   return (
     <div className="App">
@@ -17,6 +21,7 @@ function App() {
         >
           Learn React
         </a>
+        <Message name="Pavel" />
       </header>
     </div>
   );
