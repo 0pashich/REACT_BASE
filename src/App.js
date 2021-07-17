@@ -2,6 +2,9 @@ import logo from './logo.svg';
 import './App.css';
 import React, { useState, useEffect } from 'react';
 
+const user = 'Pavel';
+
+
 function Message(props) {
   return <h1 className="message">Hello, {props.name}</h1>;
 }
@@ -9,9 +12,9 @@ function Message(props) {
 function App() {
   const [messageList, setMessageList] = useState([]);
   const [value, setValue] = useState('');
-  const user = 'Pavel';
 
   const handleSendMessage = (event) => {
+    event.preventDefault()
     setMessageList((arr) => [...arr, { autor: user, text: value }]);
     setValue('');
   }
@@ -44,11 +47,12 @@ function App() {
         <div className="messages">
           {messageList.map((message, index) => <div key={index}><span>{message.autor}: </span>{message.text}</div>)}
         </div>
-        <div className="header">
-          <input className="input-text" type="text" value={value} onChange={handleChange} />
-          <button className="input-button" onClick={handleSendMessage}>Send</button>
 
-        </div>
+        <form className="header" onSubmit={handleSendMessage}>
+          <input className="input-text" type="text" value={value} onChange={handleChange} placeholder="Введите сообщение" />
+          <button className="input-button" >Send</button>
+        </form>
+
 
       </header>
 
