@@ -5,16 +5,27 @@ import './index.css';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from 'react-router-dom'
 import Router from './components/Router/Router'
+import { createTheme, makeStyles, ThemeProvider } from '@material-ui/core/styles';
+import { orange } from '@material-ui/core/colors';
+
+const theme = createTheme({
+  status: {
+    danger: orange[500],
+  },
+});
+
+
 
 
 ReactDOM.render(
   <React.StrictMode>
 
     {/* <App /> */}
-
-    <BrowserRouter>
-      <Router />
-    </BrowserRouter>
+    <ThemeProvider theme={theme}>
+      <BrowserRouter>
+        <Router />
+      </BrowserRouter>
+    </ThemeProvider>
   </React.StrictMode>,
   document.getElementById('root')
 );

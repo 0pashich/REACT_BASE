@@ -2,14 +2,14 @@ import React from 'react'
 import Message from '../Message/Message'
 import Input from '../Input/Input'
 import { AUTHORS } from '../App/constants'
-import usePrevious from '../../hooks/usePrevious'
+
 
 const Chat = (props) => {
     const [messageList, setMessageList] = React.useState([])
 
     const timer = React.useRef(null)
 
-    const prevMessageList = usePrevious(messageList)
+ 
 
     React.useEffect(() => {
 
@@ -24,7 +24,7 @@ const Chat = (props) => {
                 1500
             )
         }
-    }, [messageList, prevMessageList])
+    }, [messageList])
 
     React.useEffect(() => {
         return () => {
