@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom'
 import '../App/App.css'
 import App from '../App/App'
 import Chat from '../Chat/Chat'
+import Profile from '../Profile/Profile'
 
 export default function Router() {
     return (
@@ -22,7 +23,7 @@ export default function Router() {
                 <Route path="/chats/:chatId" render={() => <Chat />} />
 
                 <Route path="/profile">
-                    <p>Profile page </p>
+                    <Profile />
                 </Route>
 
                 <Route>
