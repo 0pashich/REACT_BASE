@@ -26,13 +26,18 @@ export default function Profile(props) {
 
             {showName && <div>{name}</div>}
 
-            <input
-                type="checkbox"
-                checked={showName}
-                value={showName}
-                onChange={setShowName}
-            />
+            <FormControlLabel
+                control={
+                    <Checkbox
+                        checked={showName}
 
+                        onChange={setShowName}
+                        name="checkedB"
+                        color="primary"
+                    />
+                }
+                label={<p>Show user name</p>}
+            />
         </div>
     )
 }
