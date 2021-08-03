@@ -1,5 +1,5 @@
 export const CHANGE_NAME = 'PROFILE::CHANGE_NAME'
-export const CHANGE_IS_ONLINE = 'PROFILE::CHANGE_IS_ONLINE'
+export const TOGGLE_SHOW_NAME = 'PROFILE::TOGGLE_SHOW_NAME'
 
 export const changeName = (name) => ({
     type: CHANGE_NAME,
@@ -8,9 +8,6 @@ export const changeName = (name) => ({
     },
 })
 
-export const changeIsOnline = (isOnline) => ({
-    type: CHANGE_IS_ONLINE,
-    payload: {
-        isOnline,
-    },
-})
+export const toggleShowName = {
+    type: TOGGLE_SHOW_NAME
+}
