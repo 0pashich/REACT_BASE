@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-// import App from './App';
+import App from './components/App/App';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from 'react-router-dom'
 import Router from './components/Router/Router'
@@ -25,7 +25,8 @@ ReactDOM.render(
     <ThemeProvider theme={theme}>
       <Provider store={store}>
         <BrowserRouter>
-          <Router />
+          <App />
+          {/* <Router /> */}
         </BrowserRouter>
       </Provider>
     </ThemeProvider>
