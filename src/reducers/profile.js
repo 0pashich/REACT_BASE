@@ -1,7 +1,7 @@
 import { TOGGLE_SHOW_NAME, CHANGE_NAME } from '../actions/profile'
 
 const initialState = {
-    name: 'Pavel',
+    name: 'Anonimus',
     age: 27,
     showName: false,
 }
