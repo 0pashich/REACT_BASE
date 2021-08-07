@@ -6,6 +6,7 @@ import App from '../App/App'
 import Chat from '../Chat/Chat'
 import Profile from '../Profile/Profile'
 import ChatList from '../Chats/ChatList'
+import Home from '../Home/index'
 
 export default function Router(props) {
     const { open, setOpen } = props
@@ -24,7 +25,7 @@ export default function Router(props) {
 
 
             <Switch>
-                {/* <Route path="/" exact component={App} /> */}
+                <Route path="/" exact component={Home} />
 
                 <Route exact path="/chats" render={() => <p>Chats page</p>} />
 

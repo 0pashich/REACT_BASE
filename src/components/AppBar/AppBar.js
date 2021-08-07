@@ -128,6 +128,9 @@ const useStyles = makeStyles((theme) => ({
     },
     submitButton: {
         alignItems: 'flex-end',
+    },
+    profileButton: {
+        textTransform: 'none',
     }
 }));
 
@@ -208,7 +211,7 @@ export default function Bar(props) {
 
 
 
-                <Button color="inherit" size="large" onClick={() => handleProfile1()} endIcon={<AccountCircle />}>{profile.name}</Button>
+                <Button className={classes.profileButton} color="inherit" size="large" onClick={() => handleProfile1()} endIcon={<AccountCircle />}>{profile.name}</Button>
                 {/* <IconButton
                         edge="end"
                         // aria-label="account of current user"

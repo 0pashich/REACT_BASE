@@ -6,7 +6,7 @@ import messagesReducer from './reducers/messages'
 const rootReducer = combineReducers({
     profile: profileReducer,
     chats: chatsReducer,
-    // messages: messagesReducer,
+    messages: messagesReducer,
 })
 
 export const store = createStore(

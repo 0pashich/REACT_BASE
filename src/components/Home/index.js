@@ -154,70 +154,8 @@ export default function Profile(props) {
         >
             <div className={classes.drawerHeader} />
             <Paper>
-                <p>Profile page</p>
-                <p>
-                    <b>Name: </b>
-                    {name}
-                </p>
-                <p>
-                    <b>Age: </b>
-                    {age}
-                </p>
-
-                {/* <InputCust
-                    label="Имя"
-                    placeholder="Введите новое имя"
-                    onSubmit={handleNameSubmit}
-                />
- */}
-
-
-                <form
-                    className={classes.root}
-                    //{clsx(classes.form, { [classes.hide]: openInput, } )}
-                    //{clsx(classes.form, openInput && classes.hide)}
-                    noValidate autoComplete="off"
-                    onSubmit={handleNameSubmitForm}
-                >
-                    <Input
-                        disableUnderline
-                        fullWidth
-                        required
-                        //inputRef={inputRef}
-                        // className="child__text-field bordered"
-                        variant="outlined"
-                        label="User name"
-                        placeholder={name}
-                        value={inputNameValue}
-                        onChange={handleNameChange}
-                    // onSubmit={handleAddChat}
-
-
-
-
-                    />
-
-                    {/* <TextField id="outlined-basic" label="New chat" variant="outlined" size='small' fullWidth required /> */}
-                    {/* value={name} onChange={handleChange} */}
-                    <IconButton edge="end" aria-label="delete" size='small' type="submit">
-                        <DoneIcon />
-                    </IconButton>
-                </form>
-
-                {showName && <div>{name}</div>}
-
-                <FormControlLabel
-                    control={
-                        <Checkbox
-                            checked={showName}
-
-                            onChange={setShowName}
-                            name="checkedB"
-                            color="primary"
-                        />
-                    }
-                    label={<p>Show user name</p>}
-                />
+                <p>This is sinple chat app</p>
+                
             </ Paper>
         </main>
     )
