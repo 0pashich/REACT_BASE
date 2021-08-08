@@ -1,0 +1,12 @@
+
+    const handleMessageSubmit = (newMessageText) => {
+        dispatch(
+            addMessage(chatId, {
+                id: `message${Date.now()}`,
+                author: AUTHORS.ME,
+                text: newMessageText,
+            })
+        )
+    }
+
+            <Input onSubmit={handleMessageSubmit} />

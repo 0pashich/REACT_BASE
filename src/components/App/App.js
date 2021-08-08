@@ -93,7 +93,7 @@ function App() {
   const classes = useStyles();
   const theme = useTheme();
 
-  const [open, setOpen] = React.useState(false);
+  // const [open, setOpen] = React.useState(false);
 
   console.log('curentChat:', currentChat)
 
@@ -102,9 +102,16 @@ function App() {
       <CssBaseline />
 
       {/* <PersistentDrawerLeft chats={chats} currentChat={currentChat} /> */}
-      <Bar open={open} setOpen={setOpen} />
-      <ChatList open={open} setOpen={setOpen} chats={chats} currentChat={currentChat} setCurrentChat={setCurrentChat} />
-      <Router open={open} setOpen={setOpen} />
+      <Bar
+      //open={open} 
+      //setOpen={setOpen} 
+      />
+      <ChatList
+      //open={open} setOpen={setOpen} chats={chats} currentChat={currentChat} setCurrentChat={setCurrentChat} 
+      />
+      <Router
+      //open={open} setOpen={setOpen} 
+      />
       {/* <ButtonAppBar /> */}
     </div >
   )

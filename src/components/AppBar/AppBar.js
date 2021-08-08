@@ -34,6 +34,10 @@ import SendIcon from '@material-ui/icons/Send';
 import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from 'react-router'
 
+import { setDrawerOpen } from '../../actions/ui'
+
+
+
 const drawerWidth = 240;
 
 const useStyles = makeStyles((theme) => ({
@@ -139,12 +143,19 @@ export default function Bar(props) {
     const theme = useTheme();
 
     //const [open, setOpen] = React.useState(false);
+
     const profile = useSelector((state) => state.profile)
+    const ui = useSelector((state) => state.ui)
+    const dispatch = useDispatch()
+    console.log('ui', ui)
+
 
     // Props and handle for open Drawer
-    const { open, setOpen } = props
+    //   const { open, setOpen } = props
     const handleDrawerOpen = () => {
-        setOpen(true);
+        //     setOpen(true);
+        dispatch(setDrawerOpen(true));
+        console.log('dispatch', ui)
     };
     //----------------------------------
 
@@ -159,7 +170,8 @@ export default function Bar(props) {
 
 
     const handleDrawerClose = () => {
-        setOpen(false);
+        //   setOpen(false);
+        dispatch(setDrawerOpen(false));
     };
 
     const history = useHistory()
@@ -192,7 +204,7 @@ export default function Bar(props) {
         <AppBar
             position="fixed"
             className={clsx(classes.appBar, {
-                [classes.appBarShift]: open,
+                [classes.appBarShift]: ui.drawerOpen,
             })}
         >
             <Toolbar>
@@ -201,7 +213,7 @@ export default function Bar(props) {
                     aria-label="open drawer"
                     onClick={handleDrawerOpen}
                     edge="start"
-                    className={clsx(classes.menuButton, open && classes.hide)}
+                    className={clsx(classes.menuButton, ui.drawerOpen && classes.hide)}
                 >
                     <ViewListIcon />
                 </IconButton>

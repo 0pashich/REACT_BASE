@@ -1,5 +1,5 @@
 
 export const AUTHORS = {
-    ME: 'Me',
+    ME: 'Anonimus',
     BOT: 'Bot',
 }

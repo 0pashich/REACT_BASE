@@ -11,7 +11,7 @@ import { changeName } from '../../actions/profile'
 import Input from '@material-ui/core/Input';
 import DoneIcon from '@material-ui/icons/Done';
 import IconButton from '@material-ui/core/IconButton';
-
+import Typography from '@material-ui/core/Typography';
 
 const drawerWidth = 240;
 
@@ -107,15 +107,21 @@ const useStyles = makeStyles((theme) => ({
     },
     submitButton: {
         alignItems: 'flex-end',
-    }
+    },
+    paper: {
+        padding: theme.spacing(2, 2),
+        // margin: theme.spacing(2, 2),
+
+    },
+
 }));
 
-const open = true;
+//const open = true;
 
 export default function Profile(props) {
     const classes = useStyles();
     const theme = useTheme();
-    
+    const ui = useSelector((state) => state.ui)
 
 
     const { age, name, showName } = useSelector((state) => state.profile)
@@ -149,18 +155,52 @@ export default function Profile(props) {
     return (
         <main
             className={clsx(classes.content, {
-                [classes.contentShift]: open,
+                [classes.contentShift]: ui.drawerOpen,
             })}
         >
             <div className={classes.drawerHeader} />
-            <Paper>
-                <p>Profile page</p>
-                <p>
-                    <b>Name: </b>
-                    {name}
+            <Paper className={classes.paper}>
+                <Typography variant="h4" component="h4">
+                    Profile page
+                </Typography>
+
+                <p className={classes.root}>
+                    <b className={classes.paper}>Name: </b>
+                    {/* {name} */}
+                    <form
+                        className={classes.root}
+                        //{clsx(classes.form, { [classes.hide]: openInput, } )}
+                        //{clsx(classes.form, openInput && classes.hide)}
+                        noValidate autoComplete="off"
+                        onSubmit={handleNameSubmitForm}
+                    >
+                        <Input
+                            disableUnderline
+                            fullWidth
+                            required
+                            //inputRef={inputRef}
+                            // className="child__text-field bordered"
+                            variant="outlined"
+                            label="User name"
+                            placeholder={name}
+                            value={inputNameValue}
+                            onChange={handleNameChange}
+                        // onSubmit={handleAddChat}
+
+
+
+
+                        />
+
+                        {/* <TextField id="outlined-basic" label="New chat" variant="outlined" size='small' fullWidth required /> */}
+                        {/* value={name} onChange={handleChange} */}
+                        <IconButton edge="end" aria-label="delete" size='small' type="submit">
+                            <DoneIcon />
+                        </IconButton>
+                    </form>
                 </p>
                 <p>
-                    <b>Age: </b>
+                    <b className={classes.paper}>Age: </b>
                     {age}
                 </p>
 
@@ -172,52 +212,23 @@ export default function Profile(props) {
  */}
 
 
-                <form
-                    className={classes.root}
-                    //{clsx(classes.form, { [classes.hide]: openInput, } )}
-                    //{clsx(classes.form, openInput && classes.hide)}
-                    noValidate autoComplete="off"
-                    onSubmit={handleNameSubmitForm}
-                >
-                    <Input
-                        disableUnderline
-                        fullWidth
-                        required
-                        //inputRef={inputRef}
-                        // className="child__text-field bordered"
-                        variant="outlined"
-                        label="User name"
-                        placeholder={name}
-                        value={inputNameValue}
-                        onChange={handleNameChange}
-                    // onSubmit={handleAddChat}
 
+                <p className={classes.paper}>
+                    {/* {showName && <div>{name}</div>} */}
 
+                    <FormControlLabel
+                        control={
+                            <Checkbox
+                                checked={showName}
 
-
+                                onChange={setShowName}
+                                name="checkedB"
+                                color="primary"
+                            />
+                        }
+                        label={<p>Show user name:    {showName && name}</p>}
                     />
-
-                    {/* <TextField id="outlined-basic" label="New chat" variant="outlined" size='small' fullWidth required /> */}
-                    {/* value={name} onChange={handleChange} */}
-                    <IconButton edge="end" aria-label="delete" size='small' type="submit">
-                        <DoneIcon />
-                    </IconButton>
-                </form>
-
-                {showName && <div>{name}</div>}
-
-                <FormControlLabel
-                    control={
-                        <Checkbox
-                            checked={showName}
-
-                            onChange={setShowName}
-                            name="checkedB"
-                            color="primary"
-                        />
-                    }
-                    label={<p>Show user name</p>}
-                />
+                </p>
             </ Paper>
         </main>
     )

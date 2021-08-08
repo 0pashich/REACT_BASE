@@ -1,17 +1,10 @@
 import React from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import FormControlLabel from '@material-ui/core/FormControlLabel'
-import Checkbox from '@material-ui/core/Checkbox'
-import { toggleShowName } from '../../actions/profile'
-import Paper from '@material-ui/core/Paper';
-import clsx from 'clsx';
+import TextField from '@material-ui/core/TextField'
+import Button from '@material-ui/core/Button'
 import { makeStyles, useTheme } from '@material-ui/core/styles';
-import InputCust from '../Input/Input'
-import { changeName } from '../../actions/profile'
-import Input from '@material-ui/core/Input';
-import DoneIcon from '@material-ui/icons/Done';
 import IconButton from '@material-ui/core/IconButton';
-
+import SendIcon from '@material-ui/icons/Send';
+import Input from '@material-ui/core/Input';
 
 const drawerWidth = 240;
 
@@ -110,55 +103,53 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-//const open = true;
 
-export default function Profile(props) {
+const InputMessage = (props) => {
+    const { onSubmit } = props
     const classes = useStyles();
     const theme = useTheme();
 
+    const [inputValue, setInputValue] = React.useState('')
 
-
-    const { age, name, showName } = useSelector((state) => state.profile)
-    const ui = useSelector((state) => state.ui)
-    //console.log(ui.drawerOpen)
-    const dispatch = useDispatch()
-    const setShowName = (event) => {
-        dispatch(toggleShowName)
+    const handleChange = (e) => {
+        setInputValue(e.target.value)
     }
 
-    //const { age = 0, name = 'Unknown', onChangeProfileName } = props
-
-    const [inputNameValue, setInputNameValue] = React.useState(name)
-
-    const handleNameChange = (e) => {
-        setInputNameValue(e.target.value)
-    }
-
-    const handleNameSubmitForm = (e) => {
+    const handleSubmit = (e) => {
         e.preventDefault()
 
-
-        dispatch(changeName(inputNameValue))
-        // setInputNameValue(name)
-
-    }
-
-    const handleNameSubmit = (newName) => {
-        // onChangeProfileName(newName)
-        dispatch(changeName(newName))
+        if (onSubmit) {
+            onSubmit(inputValue)
+            setInputValue('')
+        }
     }
 
     return (
-        <main
-            className={clsx(classes.content, {
-                [classes.contentShift]: ui.drawerOpen,
-            })}
-        >
-            <div className={classes.drawerHeader} />
-            <Paper>
-                <p>This is sinple chat app</p>
 
-            </ Paper>
-        </main>
+
+        <form className={classes.form} onSubmit={handleSubmit}>
+            <Input
+                disableUnderline
+                fullWidth
+                required
+                autoFocus
+                multiline
+                className={classes.input}
+                variant="outlined"
+                label="Сообщение"
+                placeholder="Введите сообщение"
+                value={inputValue}
+                onChange={handleChange}
+            />
+            {/* <Button type="submit" variant="outlined">
+    Отправить
+</Button> */}
+            <IconButton edge="end" aria-label="send" type="submit" >
+                <SendIcon />
+            </IconButton>
+        </form>
+
     )
 }
+
+export default InputMessage

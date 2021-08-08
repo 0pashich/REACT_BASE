@@ -8,37 +8,30 @@ import Profile from '../Profile/Profile'
 import ChatList from '../Chats/ChatList'
 import Home from '../Home/index'
 
+
 export default function Router(props) {
-    const { open, setOpen } = props
+    // const { open, setOpen } = props
 
 
 
     return (
-        <div>
-            {/* <div className="bordered">
-                <Link to="/">Home</Link>
-                <Link to="/chats">Chats</Link>
-                <Link to="/profile">Profile</Link>
-            </div> */}
-            {/* <ChatList open={open} setOpen={setOpen} /> */}
 
 
+        <Switch>
+            <Route path="/" exact component={Home} />
 
-            <Switch>
-                <Route path="/" exact component={Home} />
+            <Route exact path="/chats" render={() => <p>Chats page</p>} />
 
-                <Route exact path="/chats" render={() => <p>Chats page</p>} />
+            <Route path="/chats/:chatId" component={Chat} />
 
-                <Route path="/chats/:chatId" render={() => <Chat />} />
+            <Route path="/profile">
+                <Profile />
+            </Route>
 
-                <Route path="/profile">
-                    <Profile />
-                </Route>
+            <Route>
+                <p>404: not found</p>
+            </Route>
+        </Switch>
 
-                <Route>
-                    <p>404: not found</p>
-                </Route>
-            </Switch>
-        </div>
     )
 }

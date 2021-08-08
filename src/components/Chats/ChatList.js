@@ -35,6 +35,7 @@ import SendIcon from '@material-ui/icons/Send';
 import { useHistory } from 'react-router'
 import { useDispatch, useSelector } from 'react-redux'
 import { addChat, removeChat } from '../../actions/chats'
+import { setCurentChat, setDrawerOpen } from '../../actions/ui'
 
 const drawerWidth = 240;
 
@@ -87,6 +88,7 @@ const useStyles = makeStyles((theme) => ({
         }),
         marginLeft: -drawerWidth,
         paddingBottom: 70,
+        width: 1
     },
     contentShift: {
         transition: theme.transitions.create('margin', {
@@ -137,11 +139,21 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function ChatList(props) {
+    const ui = useSelector((state) => state.ui)
+    const chats = useSelector((state) => state.chats)
+    // const dispatch = useDispatch()
+    const dispatch = useDispatch()
+    const currentChat = useSelector((state) => state.ui.curentChat)
+    if (Object.keys(currentChat).length == 0) {
+        dispatch(setCurentChat(Object.values(chats)[0]))
+        // console.log('set default curent chat', currentChat)
+    }
 
     //Props and handle for close Drawer
-    const { open, setOpen, currentChat, setCurrentChat } = props
+    //const { open, setOpen } = props
     const handleDrawerClose = () => {
-        setOpen(false);
+        //  setOpen(false);
+        dispatch(setDrawerOpen(false));
     };
     //---------------------------------
 
@@ -149,9 +161,9 @@ export default function ChatList(props) {
 
     const history = useHistory()
 
-    const chats = useSelector((state) => state.chats)
+
     //console.log(chats)
-    const dispatch = useDispatch()
+
 
 
     const handleAddChat = (name) => {
@@ -176,7 +188,8 @@ export default function ChatList(props) {
     };
 
     const handleDrawerOpen = () => {
-        setOpen(true);
+        //  setOpen(true);
+        dispatch(setDrawerOpen(true));
     };
 
 
@@ -211,9 +224,12 @@ export default function ChatList(props) {
     const handleChatLinkClick = (chat) => {
         // historyPush(`/chats/${chat.id}`)
         console.log('handleChatLinkClick', chat)
-        setCurrentChat(chat)
+        //   setCurrentChat(chat)
+        dispatch(setCurentChat(chat));
         history.push(`/chats/${chat.id}`)
     }
+
+    console.log('ui', Object.values(chats)[0].id)
 
 
 
@@ -222,7 +238,7 @@ export default function ChatList(props) {
             className={classes.drawer}
             variant="persistent"
             anchor="left"
-            open={open}
+            open={ui.drawerOpen}
             classes={{
                 paper: classes.drawerPaper,
             }}
