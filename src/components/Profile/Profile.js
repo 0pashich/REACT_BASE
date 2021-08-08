@@ -5,8 +5,8 @@ import Checkbox from '@material-ui/core/Checkbox'
 import { toggleShowName } from '../../actions/profile'
 import Paper from '@material-ui/core/Paper';
 import clsx from 'clsx';
-import { makeStyles, useTheme } from '@material-ui/core/styles';
-import InputCust from '../Input/Input'
+import { makeStyles } from '@material-ui/core/styles';
+//import InputCust from '../Input/Input'
 import { changeName } from '../../actions/profile'
 import Input from '@material-ui/core/Input';
 import DoneIcon from '@material-ui/icons/Done';
@@ -120,7 +120,7 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Profile(props) {
     const classes = useStyles();
-    const theme = useTheme();
+   // const theme = useTheme();
     const ui = useSelector((state) => state.ui)
 
 
@@ -147,10 +147,10 @@ export default function Profile(props) {
 
     }
 
-    const handleNameSubmit = (newName) => {
-        // onChangeProfileName(newName)
-        dispatch(changeName(newName))
-    }
+    // const handleNameSubmit = (newName) => {
+    //     // onChangeProfileName(newName)
+    //     dispatch(changeName(newName))
+    // }
 
     return (
         <main

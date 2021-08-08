@@ -1,48 +1,25 @@
 import React from 'react'
 import { Redirect, useParams } from 'react-router'
-import Message from '../Message/Message'
+//import Message from '../Message/Message'
 import InputMessage from '../Input/InputMessage'
-import { AUTHORS } from '../App/constants'
+//import { AUTHORS } from '../App/constants'
 import { useDispatch, useSelector } from 'react-redux'
-import { addMessage, addMessageWithThunk } from '../../actions/messages'
+//import { addMessage, addMessageWithThunk } from '../../actions/messages'
+import { addMessageWithThunk } from '../../actions/messages'
 import { useIsChatExists } from '../../hooks/useIsChatExists'
 
 
 
 import clsx from 'clsx';
-import { makeStyles, useTheme } from '@material-ui/core/styles';
-import Drawer from '@material-ui/core/Drawer';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
-import List from '@material-ui/core/List';
+import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
-import Divider from '@material-ui/core/Divider';
-import IconButton from '@material-ui/core/IconButton';
-import MenuIcon from '@material-ui/icons/Menu';
-import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
-import ChevronRightIcon from '@material-ui/icons/ChevronRight';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
-import ListItemText from '@material-ui/core/ListItemText';
-import InboxIcon from '@material-ui/icons/MoveToInbox';
-import MailIcon from '@material-ui/icons/Mail';
-import AccountCircle from '@material-ui/icons/AccountCircle';
-import Button from '@material-ui/core/Button';
-import ViewListIcon from '@material-ui/icons/ViewList';
-import Container from '@material-ui/core/Container';
+
 import Box from '@material-ui/core/Box'
-import AddIcon from '@material-ui/icons/Add';
-import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
-import DeleteIcon from '@material-ui/icons/Delete';
-import ChatIcon from '@material-ui/icons/Chat';
-import DoneIcon from '@material-ui/icons/Done';
-import TextField from '@material-ui/core/TextField';
+
 import Paper from '@material-ui/core/Paper';
 
-import SendIcon from '@material-ui/icons/Send';
-import Profile from './../Home/index';
-import { setCurentChat } from './../../actions/ui';
+
+import { setCurrentChat } from './../../actions/ui';
 
 const drawerWidth = 240;
 
@@ -155,17 +132,17 @@ const useStyles = makeStyles((theme) => ({
 const Chat = (props) => {
     const { chatId } = useParams()
     const classes = useStyles();
-    const theme = useTheme();
+    // const theme = useTheme();
     // console.log('chatId', chatId)
     // const open = ui.drawerOpen;
-    const chats = useSelector((state) => state.chats[chatId] || [])
+    // const chats = useSelector((state) => state.chats[chatId] || [])
     const messageList = useSelector((state) => state.messages[chatId] || [])
     const ui = useSelector((state) => state.ui)
     const dispatch = useDispatch()
-    console.log(!ui.curentChat.hasOwnProperty('id'))
-    // if ('id' in Object.values(ui.CurentChat)[0]) {
-    if (ui.curentChat.hasOwnProperty('id') == false) {
-        dispatch(setCurentChat(chatId));
+    //console.log(!ui.currentChat.hasOwnProperty('id'))
+
+    if (ui.currentChat.hasOwnProperty('id') === false) {
+        dispatch(setCurrentChat(chatId));
         console.log('setDefaultChat')
     }
     // // Object.values(chats)[0].id
@@ -191,7 +168,7 @@ const Chat = (props) => {
 
     const handleMessageSubmit = (newMessageText) => {
         dispatch(
-            addMessageWithThunk(ui.curentChat.id, {
+            addMessageWithThunk(ui.currentChat.id, {
                 id: `message${Date.now()}`,
                 author: name,
                 text: newMessageText,
@@ -199,11 +176,11 @@ const Chat = (props) => {
         )
     }
 
-    // const isChatExists = useIsChatExists({ chatId })
+    const isChatExists = useIsChatExists({ chatId })
 
-    // if (!isChatExists) {
-    //     return <Redirect to="/chats" />
-    // }
+    if (!isChatExists) {
+        return <Redirect to="/" />
+    }
 
     return (
 
@@ -277,51 +254,6 @@ const Chat = (props) => {
 export default Chat
 
 
-
-
-
-// export default function PersistentDrawerLeft(props) {
-
-//     const [open, setOpen] = React.useState(false);
-
-//     const [selectedIndex, setSelectedIndex] = React.useState(1);
-
-//     const handleListItemClick = (event, index) => {
-//         setSelectedIndex(index);
-//     };
-
-//     const handleDrawerOpen = () => {
-//         setOpen(true);
-//     };
-
-//     const handleDrawerClose = () => {
-//         setOpen(false);
-//     };
-
-//     const handleProfile = () => { }
-//     const { onSubmit } = props
-//     // console.log(props.chats);
-//     // console.log(props.currentChat);
-
-//     const [inputValue, setInputValue] = React.useState('')
-
-//     const handleChange = (e) => {
-//         setInputValue(e.target.value)
-//     }
-
-//     const handleSubmit = (e) => {
-//         e.preventDefault()
-
-//         if (onSubmit) {
-//             onSubmit(inputValue)
-//             setInputValue('')
-//         }
-//     }
-
-//     return (
-
-//     );
-// }
 
 
 

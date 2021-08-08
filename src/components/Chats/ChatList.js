@@ -2,40 +2,39 @@ import React from 'react';
 import clsx from 'clsx';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
+//import AppBar from '@material-ui/core/AppBar';
+//import Toolbar from '@material-ui/core/Toolbar';
 import List from '@material-ui/core/List';
-import Typography from '@material-ui/core/Typography';
+//import Typography from '@material-ui/core/Typography';
 import Divider from '@material-ui/core/Divider';
 import IconButton from '@material-ui/core/IconButton';
-import MenuIcon from '@material-ui/icons/Menu';
+//import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import ListItem from '@material-ui/core/ListItem';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
+//import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
-import InboxIcon from '@material-ui/icons/MoveToInbox';
-import MailIcon from '@material-ui/icons/Mail';
-import AccountCircle from '@material-ui/icons/AccountCircle';
-import Button from '@material-ui/core/Button';
-import ViewListIcon from '@material-ui/icons/ViewList';
-import Container from '@material-ui/core/Container';
-import Box from '@material-ui/core/Box'
+//import InboxIcon from '@material-ui/icons/MoveToInbox';
+//import MailIcon from '@material-ui/icons/Mail';
+//import AccountCircle from '@material-ui/icons/AccountCircle';
+//import Button from '@material-ui/core/Button';
+//import ViewListIcon from '@material-ui/icons/ViewList';
+//import Container from '@material-ui/core/Container';
+//import Box from '@material-ui/core/Box'
 import AddIcon from '@material-ui/icons/Add';
 import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
 import DeleteIcon from '@material-ui/icons/Delete';
-import ChatIcon from '@material-ui/icons/Chat';
+//import ChatIcon from '@material-ui/icons/Chat';
 import DoneIcon from '@material-ui/icons/Done';
-import TextField from '@material-ui/core/TextField';
-import Paper from '@material-ui/core/Paper';
+//import TextField from '@material-ui/core/TextField';
+//import Paper from '@material-ui/core/Paper';
 import Input from '@material-ui/core/Input';
-import SendIcon from '@material-ui/icons/Send';
+//import SendIcon from '@material-ui/icons/Send';
 
 import { useHistory } from 'react-router'
 import { useDispatch, useSelector } from 'react-redux'
 import { addChat, removeChat } from '../../actions/chats'
-import { setCurentChat, setDrawerOpen } from '../../actions/ui'
+import { setCurrentChat, setDrawerOpen } from '../../actions/ui'
 
 const drawerWidth = 240;
 
@@ -143,9 +142,9 @@ export default function ChatList(props) {
     const chats = useSelector((state) => state.chats)
     // const dispatch = useDispatch()
     const dispatch = useDispatch()
-    const currentChat = useSelector((state) => state.ui.curentChat)
-    if (Object.keys(currentChat).length == 0) {
-        dispatch(setCurentChat(Object.values(chats)[0]))
+    const currentChat = useSelector((state) => state.ui.currentChat)
+    if (Object.keys(currentChat).length === 0) {
+        dispatch(setCurrentChat(Object.values(chats)[0]))
         // console.log('set default curent chat', currentChat)
     }
 
@@ -181,16 +180,16 @@ export default function ChatList(props) {
     const theme = useTheme();
     // const [open, setOpen] = React.useState(false);
 
-    const [selectedIndex, setSelectedIndex] = React.useState(1);
+   // const [selectedIndex, setSelectedIndex] = React.useState(1);
 
-    const handleListItemClick = (event, index) => {
-        setSelectedIndex(index);
-    };
+    // const handleListItemClick = (event, index) => {
+    //     setSelectedIndex(index);
+    // };
 
-    const handleDrawerOpen = () => {
-        //  setOpen(true);
-        dispatch(setDrawerOpen(true));
-    };
+    // const handleDrawerOpen = () => {
+    //     //  setOpen(true);
+    //     dispatch(setDrawerOpen(true));
+    // };
 
 
     const [openInput, setOpenInput] = React.useState(false);
@@ -225,7 +224,7 @@ export default function ChatList(props) {
         // historyPush(`/chats/${chat.id}`)
         console.log('handleChatLinkClick', chat)
         //   setCurrentChat(chat)
-        dispatch(setCurentChat(chat));
+        dispatch(setCurrentChat(chat));
         history.push(`/chats/${chat.id}`)
     }
 

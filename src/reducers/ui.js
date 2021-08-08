@@ -1,17 +1,17 @@
-import { SET_CURENT_CHAT, SET_DRAWER_OPEN } from '../actions/ui'
+import { SET_CURRENT_CHAT, SET_DRAWER_OPEN } from '../actions/ui'
 
 
 const initialState = {
     drawerOpen: false,
-    curentChat: {},
+    currentChat: {},
 }
 
 export default function uiReducer(state = initialState, action) {
     switch (action.type) {
-        case SET_CURENT_CHAT: {
+        case SET_CURRENT_CHAT: {
             return {
                 ...state,
-                curentChat: action.payload.curentChat,
+                currentChat: action.payload.currentChat,
             }
         }
         case SET_DRAWER_OPEN: {

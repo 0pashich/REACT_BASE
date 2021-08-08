@@ -4,7 +4,6 @@ import './index.css';
 import App from './components/App/App';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from 'react-router-dom'
-import Router from './components/Router/Router'
 import { createTheme, ThemeProvider } from '@material-ui/core/styles';
 import { Provider } from 'react-redux'
 import { persistor, store } from './store'
@@ -17,12 +16,9 @@ const theme = createTheme({
 });
 
 
-
-
 ReactDOM.render(
   <React.StrictMode>
 
-    {/* <App /> */}
     <ThemeProvider theme={theme}>
       <Provider store={store}>
         <PersistGate persistor={persistor} loading={<div>Loading...</div>}>

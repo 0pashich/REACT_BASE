@@ -1,11 +1,11 @@
 import React from 'react'
 import { Switch, Route } from 'react-router'
-import { Link } from 'react-router-dom'
+//import { Link } from 'react-router-dom'
 import '../App/App.css'
-import App from '../App/App'
+//import App from '../App/App'
 import Chat from '../Chat/Chat'
 import Profile from '../Profile/Profile'
-import ChatList from '../Chats/ChatList'
+//import ChatList from '../Chats/ChatList'
 import Home from '../Home/index'
 
 
