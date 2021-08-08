@@ -7,7 +7,8 @@ import { BrowserRouter } from 'react-router-dom'
 import Router from './components/Router/Router'
 import { createTheme, ThemeProvider } from '@material-ui/core/styles';
 import { Provider } from 'react-redux'
-import { store } from './store'
+import { persistor, store } from './store'
+import { PersistGate } from 'redux-persist/integration/react'
 
 const theme = createTheme({
   palette: {
@@ -24,10 +25,11 @@ ReactDOM.render(
     {/* <App /> */}
     <ThemeProvider theme={theme}>
       <Provider store={store}>
-        <BrowserRouter>
-          <App />
-          {/* <Router /> */}
-        </BrowserRouter>
+        <PersistGate persistor={persistor} loading={<div>Loading...</div>}>
+          <BrowserRouter>
+            <App />
+          </BrowserRouter>
+        </PersistGate>
       </Provider>
     </ThemeProvider>
   </React.StrictMode>,

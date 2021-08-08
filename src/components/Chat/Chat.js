@@ -4,7 +4,7 @@ import Message from '../Message/Message'
 import InputMessage from '../Input/InputMessage'
 import { AUTHORS } from '../App/constants'
 import { useDispatch, useSelector } from 'react-redux'
-import { addMessage } from '../../actions/messages'
+import { addMessage, addMessageWithThunk } from '../../actions/messages'
 import { useIsChatExists } from '../../hooks/useIsChatExists'
 
 
@@ -164,10 +164,10 @@ const Chat = (props) => {
     const dispatch = useDispatch()
     console.log(!ui.curentChat.hasOwnProperty('id'))
     // if ('id' in Object.values(ui.CurentChat)[0]) {
-    // if (ui.curentChat.hasOwnProperty('id') == false) {
-    //     dispatch(setCurentChat(chatId));
-    //     console.log('setDefaultChat')
-    // }
+    if (ui.curentChat.hasOwnProperty('id') == false) {
+        dispatch(setCurentChat(chatId));
+        console.log('setDefaultChat')
+    }
     // // Object.values(chats)[0].id
 
     const { name } = useSelector((state) => state.profile)
@@ -191,7 +191,7 @@ const Chat = (props) => {
 
     const handleMessageSubmit = (newMessageText) => {
         dispatch(
-            addMessage(chatId, {
+            addMessageWithThunk(ui.curentChat.id, {
                 id: `message${Date.now()}`,
                 author: name,
                 text: newMessageText,
