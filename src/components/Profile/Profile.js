@@ -120,7 +120,6 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Profile(props) {
     const classes = useStyles();
-   // const theme = useTheme();
     const ui = useSelector((state) => state.ui)
 
 
@@ -130,8 +129,6 @@ export default function Profile(props) {
         dispatch(toggleShowName)
     }
 
-    //const { age = 0, name = 'Unknown', onChangeProfileName } = props
-
     const [inputNameValue, setInputNameValue] = React.useState(name)
 
     const handleNameChange = (e) => {
@@ -140,17 +137,9 @@ export default function Profile(props) {
 
     const handleNameSubmitForm = (e) => {
         e.preventDefault()
-
-
         dispatch(changeName(inputNameValue))
-        // setInputNameValue(name)
-
     }
 
-    // const handleNameSubmit = (newName) => {
-    //     // onChangeProfileName(newName)
-    //     dispatch(changeName(newName))
-    // }
 
     return (
         <main
@@ -169,8 +158,6 @@ export default function Profile(props) {
                     {/* {name} */}
                     <form
                         className={classes.root}
-                        //{clsx(classes.form, { [classes.hide]: openInput, } )}
-                        //{clsx(classes.form, openInput && classes.hide)}
                         noValidate autoComplete="off"
                         onSubmit={handleNameSubmitForm}
                     >
@@ -178,22 +165,13 @@ export default function Profile(props) {
                             disableUnderline
                             fullWidth
                             required
-                            //inputRef={inputRef}
-                            // className="child__text-field bordered"
                             variant="outlined"
                             label="User name"
                             placeholder={name}
                             value={inputNameValue}
                             onChange={handleNameChange}
-                        // onSubmit={handleAddChat}
-
-
-
-
                         />
 
-                        {/* <TextField id="outlined-basic" label="New chat" variant="outlined" size='small' fullWidth required /> */}
-                        {/* value={name} onChange={handleChange} */}
                         <IconButton edge="end" aria-label="delete" size='small' type="submit">
                             <DoneIcon />
                         </IconButton>
@@ -203,19 +181,7 @@ export default function Profile(props) {
                     <b className={classes.paper}>Age: </b>
                     {age}
                 </p>
-
-                {/* <InputCust
-                    label="Имя"
-                    placeholder="Введите новое имя"
-                    onSubmit={handleNameSubmit}
-                />
- */}
-
-
-
                 <p className={classes.paper}>
-                    {/* {showName && <div>{name}</div>} */}
-
                     <FormControlLabel
                         control={
                             <Checkbox

@@ -2,10 +2,10 @@ import { AUTHORS } from '../components/App/constants'
 import { ADD_MESSAGE } from '../actions/messages'
 
 const initialState = {
-    chat1: [
-        { id: 'message1', text: 'Привет', author: AUTHORS.ME },
-        { id: 'message2', text: 'Привет!', author: AUTHORS.BOT },
-    ],
+    // chat1: [
+    //     { id: 'message1', text: 'Привет', author: AUTHORS.ME },
+    //     { id: 'message2', text: 'Привет!', author: AUTHORS.BOT },
+    // ],
 }
 
 export default function messagesReducer(state = initialState, action) {

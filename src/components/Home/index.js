@@ -1,16 +1,8 @@
 import React from 'react'
 import {  useSelector } from 'react-redux'
-//import FormControlLabel from '@material-ui/core/FormControlLabel'
-//import Checkbox from '@material-ui/core/Checkbox'
-//import { toggleShowName } from '../../actions/profile'
 import Paper from '@material-ui/core/Paper';
 import clsx from 'clsx';
 import { makeStyles } from '@material-ui/core/styles';
-//import InputCust from '../Input/Input'
-//import { changeName } from '../../actions/profile'
-//import Input from '@material-ui/core/Input';
-//import DoneIcon from '@material-ui/icons/Done';
-//import IconButton from '@material-ui/core/IconButton';
 
 
 const drawerWidth = 240;
@@ -114,39 +106,9 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Profile(props) {
     const classes = useStyles();
- //   const theme = useTheme();
 
-
-
-    //const {  name } = useSelector((state) => state.profile)
     const ui = useSelector((state) => state.ui)
-    //console.log(ui.drawerOpen)
-    //const dispatch = useDispatch()
-    // const setShowName = (event) => {
-    //     dispatch(toggleShowName)
-    // }
 
-    //const { age = 0, name = 'Unknown', onChangeProfileName } = props
-
-   // const [inputNameValue, setInputNameValue] = React.useState(name)
-
-    // const handleNameChange = (e) => {
-    //     setInputNameValue(e.target.value)
-    // }
-
-    // const handleNameSubmitForm = (e) => {
-    //     e.preventDefault()
-
-
-    //     dispatch(changeName(inputNameValue))
-    //     // setInputNameValue(name)
-
-    // }
-
-    // const handleNameSubmit = (newName) => {
-    //     // onChangeProfileName(newName)
-    //     dispatch(changeName(newName))
-    // }
 
     return (
         <main

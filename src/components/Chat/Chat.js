@@ -2,7 +2,6 @@ import React from 'react'
 import { Redirect, useParams } from 'react-router'
 //import Message from '../Message/Message'
 import InputMessage from '../Input/InputMessage'
-//import { AUTHORS } from '../App/constants'
 import { useDispatch, useSelector } from 'react-redux'
 //import { addMessage, addMessageWithThunk } from '../../actions/messages'
 import { addMessageWithThunk } from '../../actions/messages'
@@ -132,39 +131,17 @@ const useStyles = makeStyles((theme) => ({
 const Chat = (props) => {
     const { chatId } = useParams()
     const classes = useStyles();
-    // const theme = useTheme();
-    // console.log('chatId', chatId)
-    // const open = ui.drawerOpen;
-    // const chats = useSelector((state) => state.chats[chatId] || [])
+
     const messageList = useSelector((state) => state.messages[chatId] || [])
     const ui = useSelector((state) => state.ui)
     const dispatch = useDispatch()
-    //console.log(!ui.currentChat.hasOwnProperty('id'))
 
     if (ui.currentChat.hasOwnProperty('id') === false) {
         dispatch(setCurrentChat(chatId));
         console.log('setDefaultChat')
     }
-    // // Object.values(chats)[0].id
 
     const { name } = useSelector((state) => state.profile)
-
-    // TODO: этот кусок переедет в редакс в рамках 7го урока
-    // React.useEffect(() => {
-    //     if (
-    //         prevMessageList?.length < messageList.length &&
-    //         messageList[messageList.length - 1].author !== AUTHORS.BOT
-    //     ) {
-    //         timer.current = setTimeout(
-    //             () =>
-    //                 setMessageList((currentMessageList) => [
-    //                     ...currentMessageList,
-    //                     { author: AUTHORS.BOT, text: 'Привет' },
-    //                 ]),
-    //             1500
-    //         )
-    //     }
-    // }, [messageList, prevMessageList])
 
     const handleMessageSubmit = (newMessageText) => {
         dispatch(
@@ -183,14 +160,7 @@ const Chat = (props) => {
     }
 
     return (
-
-
-
         <div className={classes.width}>
-
-
-
-
             <main
                 className={clsx(classes.content, {
                     [classes.contentShift]: ui.drawerOpen,
@@ -202,45 +172,21 @@ const Chat = (props) => {
 
 
                     messageList.map((message) => (
-
-
-                        // <Message
-                        //     key={message.id}
-                        //     text={message.text}
-                        //     author={message.author}
-                        // />
                         <Paper key={message.id} elevation={3} className={(name === message.author) ? classes.messageOwn : classes.messageOther} >
                             <Typography align='justify' color={(name === message.author) ? 'textSecondary' : 'textPrimary'} variant='body1'>
                                 {message.author}: {message.text}
                             </Typography>
                         </Paper>
-
                     ))
 
 
                 ) : null}
-
-
-                {/* 
-                <Paper elevation={3} className={classes.messageOwn} >
-                    <Typography align='justify' color='textSecondary' variant='body1'>
-                        Своё
-                    </Typography>
-                </Paper>
-                <Paper elevation={3} className={classes.messageOther} >
-                    <Typography align='justify' color='textPrimary' variant='body1'>
-                        Чужое
-                    </Typography>
-                </Paper> */}
-
 
             </main>
             <footer className={classes.footer} p={1}>
                 <Box className={clsx(classes.appBar, {
                     [classes.appBarShift]: ui.drawerOpen,
                 })}>
-                    {/* <Typography variant="body1">My sticky footer can be found here.</Typography> */}
-                    {/* className="app__form bordered" */}
                     <InputMessage onSubmit={handleMessageSubmit} />
                 </Box>
             </footer>
