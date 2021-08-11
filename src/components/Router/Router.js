@@ -4,15 +4,18 @@ import '../App/App.css'
 import Chat from '../Chat/Chat'
 import Profile from '../Profile/Profile'
 import Home from '../Home/index'
+import News from '../News/index'
 
 export default function Router(props) {
-   return (
+    return (
         <Switch>
             <Route path="/" exact component={Home} />
 
             <Route exact path="/chats" render={() => <p>Chats page</p>} />
 
             <Route path="/chats/:chatId" component={Chat} />
+
+            <Route path="/news" component={News} />
 
             <Route path="/profile">
                 <Profile />

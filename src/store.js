@@ -5,6 +5,7 @@ import profileReducer from './reducers/profile'
 import chatsReducer from './reducers/chats'
 import messagesReducer from './reducers/messages'
 import uiReducer from './reducers/ui'
+import newsReducer from './reducers/news'
 import storage from 'redux-persist/lib/storage'
 
 const persistConfig = {
@@ -17,6 +18,7 @@ const rootReducer = combineReducers({
     chats: chatsReducer,
     messages: messagesReducer,
     ui: uiReducer,
+    news: newsReducer,
 })
 
 const persistedReducer = persistReducer(persistConfig, rootReducer)
