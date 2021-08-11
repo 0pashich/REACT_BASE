@@ -12,6 +12,7 @@ import ViewListIcon from '@material-ui/icons/ViewList';
 import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from 'react-router'
 import { setDrawerOpen } from '../../actions/ui'
+import BallotIcon from '@material-ui/icons/Ballot';
 
 
 
@@ -68,6 +69,10 @@ export default function Bar(props) {
         history.push(`/profile`)
     }
 
+    const handleGoToNews = () => {
+        history.push(`/news`)
+    }
+
     return (
 
         <AppBar
@@ -86,6 +91,17 @@ export default function Bar(props) {
                 >
                     <ViewListIcon />
                 </IconButton>
+                <IconButton
+                    color="inherit"
+                    aria-label="news"
+                    onClick={handleGoToNews}
+                    edge="start"
+                //  className={clsx(classes.menuButton, ui.drawerOpen && classes.hide)}
+                >
+                    <BallotIcon />
+                </IconButton>
+
+
                 <Typography variant="h6" noWrap className={classes.title}>
                     Simple chat :: {ui.currentChat.name}
                 </Typography>
