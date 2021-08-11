@@ -1,12 +1,33 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
+import App from './components/App/App';
 import reportWebVitals from './reportWebVitals';
+import { BrowserRouter } from 'react-router-dom'
+import { createTheme, ThemeProvider } from '@material-ui/core/styles';
+import { Provider } from 'react-redux'
+import { persistor, store } from './store'
+import { PersistGate } from 'redux-persist/integration/react'
+
+const theme = createTheme({
+  palette: {
+    type: 'dark',
+  },
+});
+
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+
+    <ThemeProvider theme={theme}>
+      <Provider store={store}>
+        <PersistGate persistor={persistor} loading={<div>Loading...</div>}>
+          <BrowserRouter>
+            <App />
+          </BrowserRouter>
+        </PersistGate>
+      </Provider>
+    </ThemeProvider>
   </React.StrictMode>,
   document.getElementById('root')
 );
