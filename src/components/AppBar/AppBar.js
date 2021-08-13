@@ -13,6 +13,8 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from 'react-router'
 import { setDrawerOpen } from '../../actions/ui'
 import BallotIcon from '@material-ui/icons/Ballot';
+import AccountBoxIcon from '@material-ui/icons/AccountBox';
+import Link from '@material-ui/core/Link'
 
 
 
@@ -100,6 +102,9 @@ export default function Bar(props) {
                 >
                     <BallotIcon />
                 </IconButton>
+                <Link to="/signup">Registration</Link>
+                <Link to="/login">Login</Link>
+
 
 
                 <Typography variant="h6" noWrap className={classes.title}>
