@@ -19,36 +19,86 @@ export const removeChat = (chatId) => ({
 
 export const addChatWithFirebase = (chatId, name) => {
     return () => {
-        firebase.database().ref('chats').child(chatId).push({ id: chatId, name: name, })
+        firebase.database().ref('chats').child(chatId).push({ id: chatId, name })
         console.log('addChatWithFirebase')
     }
 }
-export const deleteChatWithFirebase = (chatId) => async () => {
-    firebase.database().ref("chats").child(chatId).remove();
-    console.log('deleteChatWithFirebase')
-};
+export const deleteChatWithFirebase = (chatId) => {
+    return async (dispatch) => {
+        try {
+            await firebase.database().ref('chats').child(chatId).remove()
+
+            dispatch(removeChat(chatId))
+        } catch (error) {
+            console.error(error.message)
+        }
+    }
+}
+
+
+
+
+// async () => {
+//     firebase.database().ref("chats").child(chatId).remove();
+//     console.log('deleteChatWithFirebase')
+// };
 
 export const subscribeOnChatsChangings = () => {
     return (dispatch, getState) => {
-        firebase
-            .database()
-            .ref('chats')
-            .on('child_added', (snapshot) => {
-                console.log('child_added', snapshot.val())
-                //  snapshot.val()[])
-                // dispatch(addChat( snapshot.val()))
-            })
+        firebase.database().ref('chats').on('child_added', (snapshot) => {
+            const { id: chatId, name } = Object.values(snapshot.val())[0]
 
-        firebase
-            .database()
-            .ref('messages')
-            .on('child_changed', (snapshot) => {
-                console.log('child_changed', snapshot.val())
+            dispatch(addChat(chatId, name))
+        })
 
-                // dispatch(addChat(chatId, snapshot.val()))
-            })
+        firebase.database().ref('chats').on('child_changed', (snapshot) => {
+            const { id: chatId, name } = Object.values(snapshot.val())[0]
+
+            dispatch(addChat(chatId, name))
+        })
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//     return (dispatch, getState) => {
+//         firebase
+//             .database()
+//             .ref('chats')
+//             .on('child_added', (snapshot) => {
+//                 console.log('child_added', snapshot.val())
+//                 //  snapshot.val()[])
+//                 // dispatch(addChat( snapshot.val()))
+//             })
+
+//         firebase
+//             .database()
+//             .ref('messages')
+//             .on('child_changed', (snapshot) => {
+//                 console.log('child_changed', snapshot.val())
+
+//                 // dispatch(addChat(chatId, snapshot.val()))
+//             })
+//     }
+// }
 
 
 
