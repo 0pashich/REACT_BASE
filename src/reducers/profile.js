@@ -1,9 +1,16 @@
-import { TOGGLE_SHOW_NAME, CHANGE_NAME } from '../actions/profile'
+import { TOGGLE_SHOW_NAME, } from '../actions/profile'
+
+import {
+    CHANGE_IS_AUTHED,
+    CHANGE_IS_ONLINE,
+    CHANGE_NAME,
+} from '../actions/profile'
 
 const initialState = {
-    name: 'Anonimus',
+    name: 'John',
     age: 27,
-    showName: false,
+    isOnline: true,
+    isAuthed: false,
 }
 
 export default function reducer(state = initialState, action) {
@@ -18,6 +25,18 @@ export default function reducer(state = initialState, action) {
             return {
                 ...state,
                 showName: !state.showName
+            }
+        }
+        case CHANGE_IS_ONLINE: {
+            return {
+                ...state,
+                isOnline: action.payload.isOnline,
+            }
+        }
+        case CHANGE_IS_AUTHED: {
+            return {
+                ...state,
+                isAuthed: action.payload.isAuthed,
             }
         }
         default:

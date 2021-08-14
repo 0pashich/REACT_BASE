@@ -14,7 +14,13 @@ import { useHistory } from 'react-router'
 import { setDrawerOpen } from '../../actions/ui'
 import BallotIcon from '@material-ui/icons/Ballot';
 import AccountBoxIcon from '@material-ui/icons/AccountBox';
-import Link from '@material-ui/core/Link'
+//import Link from '@material-ui/core/Link';
+import InfoIcon from '@material-ui/icons/Info';
+import { Link } from 'react-router-dom'
+import firebase from 'firebase'
+import ExitToAppIcon from '@material-ui/icons/ExitToApp';
+
+import { changeIsAuthed } from '../../actions/profile'
 
 
 
@@ -60,6 +66,7 @@ export default function Bar(props) {
     const profile = useSelector((state) => state.profile)
     const ui = useSelector((state) => state.ui)
     const dispatch = useDispatch()
+    console.log('profile', profile)
 
     const handleDrawerOpen = () => {
         dispatch(setDrawerOpen(true));
@@ -68,12 +75,34 @@ export default function Bar(props) {
 
     const history = useHistory()
     const handleGoToProfile = () => {
+        // history.push(`/login`)
         history.push(`/profile`)
     }
 
     const handleGoToNews = () => {
         history.push(`/news`)
     }
+
+
+    React.useEffect(() => {
+        firebase.auth().onAuthStateChanged((user) => {
+            console.log('onAuthStateChanged', { user })
+            dispatch(changeIsAuthed(Boolean(user)))
+
+            // const currentUser = firebase.auth().currentUser.providerData.;
+
+            //currentUser.providerData.forEach((userInfo) => {
+            // console.log('User info for provider: ', firebase.auth().currentUser.providerData);
+
+        })
+    }, [])
+
+    const handleSignOut = (e) => {
+        e.preventDefault()
+
+        firebase.auth().signOut()
+    }
+
 
     return (
 
@@ -93,24 +122,45 @@ export default function Bar(props) {
                 >
                     <ViewListIcon />
                 </IconButton>
-                <IconButton
-                    color="inherit"
-                    aria-label="news"
-                    onClick={handleGoToNews}
-                    edge="start"
-                //  className={clsx(classes.menuButton, ui.drawerOpen && classes.hide)}
-                >
-                    <BallotIcon />
-                </IconButton>
-                <Link to="/signup">Registration</Link>
+
+                {/* <Link to="/signup" color='textPrimary'>Registration</Link>
+
+
                 <Link to="/login">Login</Link>
+               */}
 
 
 
                 <Typography variant="h6" noWrap className={classes.title}>
                     Simple chat :: {ui.currentChat.name}
                 </Typography>
-                <Button className={classes.profileButton} color="inherit" size="large" onClick={() => handleGoToProfile()} endIcon={<AccountCircle />}>{profile.name}</Button>
+                <Button className={classes.profileButton} color="inherit" size="large" onClick={() => handleGoToProfile()} endIcon={<AccountCircle />}>
+                    {profile.isAuthed ? profile.name : "Login"}
+
+                </Button>
+                <IconButton
+                    color="inherit"
+                    aria-label="news"
+                    onClick={handleGoToNews}
+                    edge="end"
+                //  className={clsx(classes.menuButton, ui.drawerOpen && classes.hide)}
+                >
+                    <InfoIcon />
+                </IconButton>
+
+                {profile.isAuthed ?
+                    <IconButton
+                        color="inherit"
+                        aria-label="news"
+                        onClick={handleSignOut}
+                        edge="end"
+                    //  className={clsx(classes.menuButton, ui.drawerOpen && classes.hide)}
+                    >
+                        <ExitToAppIcon />
+                    </IconButton>
+                    : null}
+
+
             </Toolbar>
         </AppBar>
 

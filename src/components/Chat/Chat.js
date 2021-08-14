@@ -1,24 +1,21 @@
-import React from 'react'
-import { Redirect, useParams } from 'react-router'
+import React from 'react';
+
+
+import { Redirect, useParams } from 'react-router';
+
 //import Message from '../Message/Message'
-import InputMessage from '../Input/InputMessage'
-import { useDispatch, useSelector } from 'react-redux'
+import InputMessage from '../Input/InputMessage';
+import { useDispatch, useSelector } from 'react-redux';
 //import { addMessage, addMessageWithThunk } from '../../actions/messages'
-import { addMessageWithThunk } from '../../actions/messages'
+import { sendMessageToBot, subscribeOnMessagesChangings } from '../../actions/messages';
 import { useIsChatExists } from '../../hooks/useIsChatExists'
-
-
-
-import clsx from 'clsx';
 import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
-
-import Box from '@material-ui/core/Box'
-
+import Box from '@material-ui/core/Box';
 import Paper from '@material-ui/core/Paper';
-
-
 import { setCurrentChat } from './../../actions/ui';
+import clsx from 'clsx';
+
 
 const drawerWidth = 240;
 
@@ -141,11 +138,16 @@ const Chat = (props) => {
         console.log('setDefaultChat')
     }
 
+    React.useEffect(() => {
+        dispatch(subscribeOnMessagesChangings(chatId))
+    }, [])
+
+
     const { name } = useSelector((state) => state.profile)
 
     const handleMessageSubmit = (newMessageText) => {
         dispatch(
-            addMessageWithThunk(ui.currentChat.id, {
+            sendMessageToBot(ui.currentChat.id, {
                 id: `message${Date.now()}`,
                 author: name,
                 text: newMessageText,

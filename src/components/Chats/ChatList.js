@@ -16,8 +16,9 @@ import DoneIcon from '@material-ui/icons/Done';
 import Input from '@material-ui/core/Input';
 import { useHistory } from 'react-router'
 import { useDispatch, useSelector } from 'react-redux'
-import { addChat, removeChat } from '../../actions/chats'
+import { addChat, removeChat, addChatWithFirebase, deleteChatWithFirebase, subscribeOnChatsChangings } from '../../actions/chats'
 import { setCurrentChat, setDrawerOpen } from '../../actions/ui'
+
 
 const drawerWidth = 240;
 
@@ -137,11 +138,11 @@ export default function ChatList(props) {
     const history = useHistory()
 
     const handleAddChat = (name) => {
-        dispatch(addChat(`chat${Date.now()}`, name))
+        dispatch(addChatWithFirebase(`chat${Date.now()}`, name))
     }
 
     const handleRemoveChat = (chatId) => {
-        dispatch(removeChat(chatId))
+        dispatch(deleteChatWithFirebase(chatId))
     }
 
     const classes = useStyles();
@@ -174,6 +175,9 @@ export default function ChatList(props) {
 
     console.log('ui', Object.values(chats)[0].id)
 
+    React.useEffect(() => {
+        dispatch(subscribeOnChatsChangings())
+    }, [])
 
 
     return (
