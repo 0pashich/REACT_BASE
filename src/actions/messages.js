@@ -1,8 +1,8 @@
 import { AUTHORS } from '../components/App/constants'
 import firebase from 'firebase'
+
 export const ADD_MESSAGE = 'MESSAGES:ADD_MESSAGE'
-
-
+export const CLEAR_MESSAGE = 'MESSAGES:CLEAR_MESSAGE'
 
 export const addMessage = (chatId, message) => ({
     type: ADD_MESSAGE,
@@ -12,13 +12,14 @@ export const addMessage = (chatId, message) => ({
     },
 })
 
-export const addMessageWithThunk = (chatId, message) => (dispatch, getState) => {
-    dispatch(addMessage(chatId, message));
-    if (message.author !== AUTHORS.BOT) {
-        const botMessage = { id: `botmessage${Date.now()}`, text: 'Привет!', author: AUTHORS.BOT };
-        setTimeout(() => dispatch(addMessage(chatId, botMessage)), 2000);
-    }
-}
+export const clearMessage = (chatId) => ({
+    type: CLEAR_MESSAGE,
+    payload: {
+        chatId,
+    },
+})
+
+
 
 export const sendMessageToBot = (chatId, message) => {
     return () => {

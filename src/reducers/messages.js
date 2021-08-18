@@ -1,5 +1,5 @@
 import { AUTHORS } from '../components/App/constants'
-import { ADD_MESSAGE } from '../actions/messages'
+import { ADD_MESSAGE, CLEAR_MESSAGE } from '../actions/messages'
 
 const initialState = {
     // chat1: [
@@ -17,6 +17,12 @@ export default function messagesReducer(state = initialState, action) {
                     ...(state[action.payload.chatId] || []),
                     action.payload.message,
                 ],
+            }
+        }
+        case CLEAR_MESSAGE: {
+            delete state[action.payload.chatId]
+            return {
+                //  ...state,
             }
         }
         default:

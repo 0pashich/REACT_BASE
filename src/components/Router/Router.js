@@ -10,8 +10,8 @@ import { useSelector } from 'react-redux'
 
 const PrivateRoute = (props) => {
     const isAuthed = useSelector((state) => state.profile.isAuthed)
-    console.log("isAuthed" < isAuthed)
-    
+    console.log("isAuthed", isAuthed)
+
     return isAuthed ? <Route {...props} /> : <Redirect to="/login" />
 }
 

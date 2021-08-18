@@ -7,9 +7,6 @@ import {
 } from '../actions/profile'
 
 const initialState = {
-    name: 'John',
-    age: 27,
-    isOnline: true,
     isAuthed: false,
 }
 

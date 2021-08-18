@@ -7,7 +7,7 @@ import { Redirect, useParams } from 'react-router';
 import InputMessage from '../Input/InputMessage';
 import { useDispatch, useSelector } from 'react-redux';
 //import { addMessage, addMessageWithThunk } from '../../actions/messages'
-import { sendMessageToBot, subscribeOnMessagesChangings } from '../../actions/messages';
+import { sendMessageToBot, subscribeOnMessagesChangings, clearMessage } from '../../actions/messages';
 import { useIsChatExists } from '../../hooks/useIsChatExists'
 import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
@@ -130,6 +130,7 @@ const Chat = (props) => {
     const classes = useStyles();
 
     const messageList = useSelector((state) => state.messages[chatId] || [])
+    const messages = useSelector((state) => state.messages)
     const ui = useSelector((state) => state.ui)
     const dispatch = useDispatch()
 
@@ -139,8 +140,13 @@ const Chat = (props) => {
     }
 
     React.useEffect(() => {
-        dispatch(subscribeOnMessagesChangings(chatId))
-    }, [])
+        //  console.log('Чистим и загружаем сообщения', messages)
+        // dispatch(clearMessage(chatId))
+        if (!messages.hasOwnProperty(chatId)) {
+            dispatch(subscribeOnMessagesChangings(chatId))
+            //console.log('подписались на ', chatId)
+        }
+    }, [ui.currentChat.id])
 
 
     const { name } = useSelector((state) => state.profile)

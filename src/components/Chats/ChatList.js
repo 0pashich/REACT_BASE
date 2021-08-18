@@ -173,7 +173,7 @@ export default function ChatList(props) {
         history.push(`/chats/${chat.id}`)
     }
 
-    console.log('ui', Object.values(chats)[0].id)
+    console.log('ui', currentChat)
 
     React.useEffect(() => {
         dispatch(subscribeOnChatsChangings())
