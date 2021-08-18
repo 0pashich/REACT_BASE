@@ -1,4 +1,4 @@
-import { AUTHORS } from '../components/App/constants'
+//import { AUTHORS } from '../components/App/constants'
 import { ADD_MESSAGE, CLEAR_MESSAGE } from '../actions/messages'
 
 const initialState = {

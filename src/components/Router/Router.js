@@ -10,15 +10,15 @@ import { useSelector } from 'react-redux'
 
 const PrivateRoute = (props) => {
     const isAuthed = useSelector((state) => state.profile.isAuthed)
-    console.log("isAuthed", isAuthed)
+  //  console.log("isAuthed", isAuthed)
 
     return isAuthed ? <Route {...props} /> : <Redirect to="/login" />
 }
 
 
-function PublicRoute({ authenticated, ...rest }) {
-    return !authenticated ? <Route {...rest} /> : <Redirect to="/chats" />;
-}
+// function PublicRoute({ authenticated, ...rest }) {
+//     return !authenticated ? <Route {...rest} /> : <Redirect to="/chats" />;
+// }
 
 
 export default function Router(props) {

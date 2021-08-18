@@ -20,7 +20,7 @@ export const removeChat = (chatId) => ({
 export const addChatWithFirebase = (chatId, name) => {
     return () => {
         firebase.database().ref('chats').child(chatId).push({ id: chatId, name })
-        console.log('addChatWithFirebase')
+    //    console.log('addChatWithFirebase')
     }
 }
 export const deleteChatWithFirebase = (chatId) => {

@@ -1,0 +1,16 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`UI returns correct state after SET_CURRENT_CHAT action 1`] = `
+Object {
+  "chat1": Object {
+    "id": "chat1",
+    "name": "Чат 1",
+  },
+  "currentChat": Object {
+    "chat1": Object {
+      "id": "chat1",
+      "name": "Чат 1",
+    },
+  },
+}
+`;

@@ -12,11 +12,11 @@ import ViewListIcon from '@material-ui/icons/ViewList';
 import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from 'react-router'
 import { setDrawerOpen } from '../../actions/ui'
-import BallotIcon from '@material-ui/icons/Ballot';
-import AccountBoxIcon from '@material-ui/icons/AccountBox';
+//import BallotIcon from '@material-ui/icons/Ballot';
+//import AccountBoxIcon from '@material-ui/icons/AccountBox';
 //import Link from '@material-ui/core/Link';
 import InfoIcon from '@material-ui/icons/Info';
-import { Link } from 'react-router-dom'
+//import { Link } from 'react-router-dom'
 import firebase from 'firebase'
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 
@@ -66,11 +66,11 @@ export default function Bar(props) {
     const profile = useSelector((state) => state.profile)
     const ui = useSelector((state) => state.ui)
     const dispatch = useDispatch()
-    console.log('profile', profile)
+    //  console.log('profile', profile)
 
     const handleDrawerOpen = () => {
         dispatch(setDrawerOpen(true));
-        console.log('dispatch', ui)
+        //  console.log('dispatch', ui)
     };
 
     const history = useHistory()
@@ -86,7 +86,7 @@ export default function Bar(props) {
 
     React.useEffect(() => {
         firebase.auth().onAuthStateChanged((user) => {
-            console.log('onAuthStateChanged', { user })
+            //   console.log('onAuthStateChanged', { user })
             dispatch(changeIsAuthed(Boolean(user)))
 
             // const currentUser = firebase.auth().currentUser.providerData.;

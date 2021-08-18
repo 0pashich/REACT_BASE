@@ -7,7 +7,7 @@ import { Redirect, useParams } from 'react-router';
 import InputMessage from '../Input/InputMessage';
 import { useDispatch, useSelector } from 'react-redux';
 //import { addMessage, addMessageWithThunk } from '../../actions/messages'
-import { sendMessageToBot, subscribeOnMessagesChangings, clearMessage } from '../../actions/messages';
+import { sendMessageToBot, subscribeOnMessagesChangings } from '../../actions/messages';
 import { useIsChatExists } from '../../hooks/useIsChatExists'
 import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
@@ -136,7 +136,7 @@ const Chat = (props) => {
 
     if (ui.currentChat.hasOwnProperty('id') === false) {
         dispatch(setCurrentChat(chatId));
-        console.log('setDefaultChat')
+        // console.log('setDefaultChat')
     }
 
     React.useEffect(() => {

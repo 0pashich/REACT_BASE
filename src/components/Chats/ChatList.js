@@ -16,7 +16,8 @@ import DoneIcon from '@material-ui/icons/Done';
 import Input from '@material-ui/core/Input';
 import { useHistory } from 'react-router'
 import { useDispatch, useSelector } from 'react-redux'
-import { addChat, removeChat, addChatWithFirebase, deleteChatWithFirebase, subscribeOnChatsChangings } from '../../actions/chats'
+//import { addChat, removeChat, addChatWithFirebase, deleteChatWithFirebase, subscribeOnChatsChangings } from '../../actions/chats'
+import { addChatWithFirebase, deleteChatWithFirebase, subscribeOnChatsChangings } from '../../actions/chats'
 import { setCurrentChat, setDrawerOpen } from '../../actions/ui'
 
 
@@ -173,7 +174,7 @@ export default function ChatList(props) {
         history.push(`/chats/${chat.id}`)
     }
 
-    console.log('ui', currentChat)
+    //  console.log('ui', currentChat)
 
     React.useEffect(() => {
         dispatch(subscribeOnChatsChangings())

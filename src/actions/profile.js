@@ -23,7 +23,7 @@ export const changeIsAuthed = (isAuthed) => ({
 
 export const changeNameWithThunk = (name) => {
     return (dispatch, getState) => {
-        console.log(name)
+       // console.log(name)
         setTimeout(() => {
             dispatch(changeName(name))
         }, 1000)
@@ -39,7 +39,7 @@ export const changeIsOnline = (isOnline) => ({
 
 export const changeIsOnlineWithThunk = (isOnline) => {
     return (dispatch, getState) => {
-        console.log(getState())
+       // console.log(getState())
         setTimeout(() => {
             dispatch(changeIsOnline(isOnline))
         }, 1000)

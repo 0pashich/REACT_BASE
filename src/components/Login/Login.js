@@ -4,7 +4,8 @@ import TextField from '@material-ui/core/TextField'
 import Checkbox from '@material-ui/core/Checkbox'
 import FormControlLabel from '@material-ui/core/FormControlLabel'
 import { useHistory } from 'react-router'
-import { useDispatch, useSelector } from 'react-redux'
+//import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { changeName } from '../../actions/profile'
 
 export default function Login(props) {
@@ -17,7 +18,7 @@ export default function Login(props) {
     const handleChangePassword = (e) => setPassword(e.target.value)
     const handleIsSigningUpChange = (e) => setIsSigningUp(e.target.checked)
     const history = useHistory()
-    const profile = useSelector((state) => state.profile)
+    //    const profile = useSelector((state) => state.profile)
     const dispatch = useDispatch()
 
 
@@ -36,7 +37,7 @@ export default function Login(props) {
     }
 
     const handleSubmit = () => {
-        console.log('Пытемся залогиниться', { email, password })
+        //  console.log('Пытемся залогиниться', { email, password })
 
         // firebase.auth().onAuthStateChanged((user) => {
         //     console.log('onAuthStateChange', { user })
